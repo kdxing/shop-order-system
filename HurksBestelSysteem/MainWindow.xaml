@@ -1,0 +1,9 @@
+﻿<Window x:Class="HurksBestelSysteem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Overzicht" Height="348" Width="410">
+    <Grid Width="374" Height="287">
+        <Button Content="Zoek Product" Height="23" HorizontalAlignment="Left" Margin="12,12,0,0" Name="btnFindProduct" VerticalAlignment="Top" Width="120" Click="btnFindProduct_Click" />
+        <Button Content="Voeg Product Toe" Height="23" HorizontalAlignment="Left" Margin="12,41,0,0" Name="btnAddProduct" VerticalAlignment="Top" Width="120" Click="btnAddProduct_Click" />
+    </Grid>
+</Window>

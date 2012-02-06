@@ -1,0 +1,22 @@
+﻿<Window x:Class="HurksBestelSysteem.AddProduct"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Voeg Product Toe" Height="446" Width="336">
+    <Grid Width="310">
+        <Button Content="Voeg Toe" Height="23" HorizontalAlignment="Left" Margin="219,372,0,0" Name="btnAddProduct" VerticalAlignment="Top" Width="75" Click="btnAddProduct_Click" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="12,36,0,0" Name="tbProductName" VerticalAlignment="Top" Width="194" />
+        <Label Content="Productnaam:" Height="28" HorizontalAlignment="Left" Margin="12,12,0,0" Name="lblProductName" VerticalAlignment="Top" />
+        <Label Content="Productcode:" Height="28" HorizontalAlignment="Left" Margin="12,65,0,0" Name="lblProductCode" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="12,89,0,0" Name="tbProductCode" VerticalAlignment="Top" Width="98" />
+        <Label Content="Prijs:" Height="28" HorizontalAlignment="Left" Margin="12,118,0,0" Name="lblPrice" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="12,143,0,0" Name="tbPrice" VerticalAlignment="Top" Width="98" />
+        <GroupBox Header="Prijstype:" Height="76" HorizontalAlignment="Left" Margin="12,172,0,0" Name="gpbPriceType" VerticalAlignment="Top" Width="200">
+            <Grid Height="49" Opacity="1">
+                <RadioButton Content="Kiloprijs" Height="16" HorizontalAlignment="Left" Margin="6,6,0,0" Name="rbPriceTypeWeight" VerticalAlignment="Top" GroupName="pricetype" />
+                <RadioButton Content="Stuksprijs" Height="16" HorizontalAlignment="Left" Margin="6,28,0,0" Name="rbPriceTypeUnit" VerticalAlignment="Top" GroupName="pricetype" />
+            </Grid>
+        </GroupBox>
+        <Label Content="Beschrijving:" Height="28" HorizontalAlignment="Left" Margin="12,254,0,0" Name="lblDescription" VerticalAlignment="Top" />
+        <TextBox Height="83" HorizontalAlignment="Left" Margin="18,280,0,0" Name="tbDescription" VerticalAlignment="Top" Width="188" TextWrapping="Wrap" />
+    </Grid>
+</Window>
