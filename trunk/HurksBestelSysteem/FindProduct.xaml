@@ -1,0 +1,11 @@
+﻿<Window x:Class="HurksBestelSysteem.FindProduct"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Vind Product" Height="422" Width="262">
+    <Grid Width="234">
+        <ListBox Height="271" HorizontalAlignment="Left" Margin="12,100,0,0" Name="lbSearchResult" VerticalAlignment="Top" Width="210" SelectionChanged="lbSearchResult_SelectionChanged" />
+        <TextBox Height="20" HorizontalAlignment="Left" Margin="12,40,0,0" Name="tbSearchInput" VerticalAlignment="Top" Width="210" TextChanged="tbSearchInput_TextChanged" />
+        <Label Content="Gevonden producten:" Height="28" HorizontalAlignment="Left" Margin="12,66,0,0" Name="lblSearchResult" VerticalAlignment="Top" />
+        <Label Content="Zoekopdracht:" Height="28" HorizontalAlignment="Left" Margin="12,12,0,0" Name="lblSearchInput" VerticalAlignment="Top" Width="114" />
+    </Grid>
+</Window>
