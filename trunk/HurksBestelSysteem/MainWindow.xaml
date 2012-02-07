@@ -5,5 +5,6 @@
     <Grid Width="374" Height="287">
         <Button Content="Zoek Product" Height="23" HorizontalAlignment="Left" Margin="12,12,0,0" Name="btnFindProduct" VerticalAlignment="Top" Width="120" Click="btnFindProduct_Click" />
         <Button Content="Voeg Product Toe" Height="23" HorizontalAlignment="Left" Margin="12,41,0,0" Name="btnAddProduct" VerticalAlignment="Top" Width="120" Click="btnAddProduct_Click" />
+        <Button Content="Verwijder Product" Height="23" HorizontalAlignment="Left" Margin="12,70,0,0" Name="btnDeleteProduct" VerticalAlignment="Top" Width="120" Click="btnDeleteProduct_Click" />
     </Grid>
 </Window>

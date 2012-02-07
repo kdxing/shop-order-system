@@ -17,6 +17,10 @@ namespace HurksBestelSysteem
             }
         }
 
+        //#################### PRODUCT FUNCTIONS ###########################
+        //#################### PRODUCT FUNCTIONS ###########################
+        #region PRODUCT_FUNCTIONS
+
         //returnt false als de gegevens niet kloppen
         //returnt true als de gegevens wel kloppen en de klant is toegevoegd
         public bool AddProduct(Product product)
@@ -86,5 +90,9 @@ namespace HurksBestelSysteem
                 throw ex;
             }
         }
+
+        #endregion PRODUCT_FUNCTIONS
+        //#################### END OF PRODUCT FUNCTIONS ####################
+        //#################### END OF PRODUCT FUNCTIONS ####################
     }
 }

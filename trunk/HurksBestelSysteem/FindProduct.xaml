@@ -1,7 +1,7 @@
 ﻿<Window x:Class="HurksBestelSysteem.FindProduct"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Vind Product" Height="422" Width="262">
+        Title="Vind Product" Height="422" Width="262" Activated="Window_Activated">
     <Grid Width="234">
         <ListBox Height="271" HorizontalAlignment="Left" Margin="12,100,0,0" Name="lbSearchResult" VerticalAlignment="Top" Width="210" SelectionChanged="lbSearchResult_SelectionChanged" />
         <TextBox Height="20" HorizontalAlignment="Left" Margin="12,40,0,0" Name="tbSearchInput" VerticalAlignment="Top" Width="210" TextChanged="tbSearchInput_TextChanged" />
