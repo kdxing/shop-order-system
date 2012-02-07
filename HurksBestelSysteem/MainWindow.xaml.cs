@@ -40,5 +40,12 @@ namespace HurksBestelSysteem
             a.Owner = this;
             a.Show();
         }
+
+        private void btnDeleteProduct_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteProduct d = new DeleteProduct();
+            d.Owner = this;
+            d.Show();
+        }
     }
 }

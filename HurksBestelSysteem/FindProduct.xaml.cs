@@ -29,18 +29,44 @@ namespace HurksBestelSysteem
 
         private void tbSearchInput_TextChanged(object sender, TextChangedEventArgs e)
         {
+            GetSearchResult();
+        }
+
+        private void GetSearchResult()
+        {
+            if (tbSearchInput.Text.Equals(""))
+            {
+                lbSearchResult.Items.Clear();
+                return;
+            }
+
             Product[] products;
             access.GetProductsByName(tbSearchInput.Text, out products);
             lbSearchResult.Items.Clear();
             for (int i = 0; i < products.Length; i++)
             {
                 lbSearchResult.Items.Add(products[i]);
-            }
+            } 
         }
 
         private void lbSearchResult_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            object selected = lbSearchResult.SelectedItem;
+            if (selected == null)
+            {
+                //clear GUI
+            }
+            else
+            {
+                Product p = (Product)selected;
+                //display in GUI
+            }
+        }
 
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            //update out list, in case an interaction with another window (delete window, add window, etc) changed the database
+            GetSearchResult();
         }
     }
 }

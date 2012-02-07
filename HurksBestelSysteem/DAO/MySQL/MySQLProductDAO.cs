@@ -63,7 +63,8 @@ namespace HurksBestelSysteem.DAO.MySQL
                                     productCode,
                                     reader["description"].ToString(),
                                     Decimal.Parse(reader["price"].ToString(), NumberStyles.Currency, numberInfo),
-                                    ((Product.PriceType)(Convert.ToInt32(reader["pricetype"])))
+                                    ((Product.PriceType)(Convert.ToInt32(reader["pricetype"]))),
+                                    (Convert.ToInt32(reader["idproduct"]))
                                     );
                             }
                             product = p;
@@ -114,7 +115,8 @@ namespace HurksBestelSysteem.DAO.MySQL
                                         Convert.ToInt32(reader["productcode"]),
                                         reader["description"].ToString(),
                                         Decimal.Parse(reader["price"].ToString(), NumberStyles.Currency, numberInfo),
-                                        priceType
+                                        priceType,
+                                        (Convert.ToInt32(reader["idproduct"]))
                                         );
                                     productsList.Add(p);
                                 }
@@ -145,11 +147,17 @@ namespace HurksBestelSysteem.DAO.MySQL
 
         public bool RemoveProduct(Product p)
         {
+            if (p.internalID == -1)
+            {
+                return false;
+            }
+
             try
             {
                 using (IDbConnection connection = MySQLDAOFactory.GetDatabase().CreateOpenConnection())
                 {
-                    string query = "DELETE * FROM product WHERE product.productcode = '" + p.productCode.ToString() + "'";
+                    //upon deletion, make sure both the productcode and the internal database id match, that way we're 100% sure the right product is deleted
+                    string query = "DELETE FROM product WHERE product.productcode = '" + p.productCode.ToString() + "' AND product.idproduct = '" + p.internalID.ToString() + "'";
                     using (IDbCommand command = MySQLDAOFactory.GetDatabase().CreateCommand(query, connection))
                     {
                         if (command.ExecuteNonQuery() <= 0)
