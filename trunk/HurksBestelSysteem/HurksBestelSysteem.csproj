@@ -92,6 +92,7 @@
     <Compile Include="Database\DatabaseException.cs" />
     <Compile Include="Database\MySQL\MySQLDatabaseConnection.cs" />
     <Compile Include="Domain\Product.cs" />
+    <Compile Include="Domain\ProductCategory.cs" />
     <Compile Include="FindProduct.xaml.cs">
       <DependentUpon>FindProduct.xaml</DependentUpon>
     </Compile>
