@@ -91,6 +91,23 @@ namespace HurksBestelSysteem
             }
         }
 
+        public bool GetProductCategories(out ProductCategory[] categories)
+        {
+            ProductDAO dao = daoFactory.GetProductDAO();
+            try
+            {
+                return dao.GetAllProductCategories(out categories);
+            }
+            catch (DatabaseException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         #endregion PRODUCT_FUNCTIONS
         //#################### END OF PRODUCT FUNCTIONS ####################
         //#################### END OF PRODUCT FUNCTIONS ####################

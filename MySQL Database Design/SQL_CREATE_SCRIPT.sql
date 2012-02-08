@@ -36,11 +36,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `hurksbestelsysteem`.`product.category`
+-- Table `hurksbestelsysteem`.`product_category`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `hurksbestelsysteem`.`product.category` ;
+DROP TABLE IF EXISTS `hurksbestelsysteem`.`product_category` ;
 
-CREATE  TABLE IF NOT EXISTS `hurksbestelsysteem`.`product.category` (
+CREATE  TABLE IF NOT EXISTS `hurksbestelsysteem`.`product_category` (
   `idproduct.category` INT NOT NULL AUTO_INCREMENT ,
   `categoryid` INT NOT NULL ,
   `productid` INT NOT NULL ,
