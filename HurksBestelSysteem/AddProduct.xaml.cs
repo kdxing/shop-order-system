@@ -23,6 +23,7 @@ namespace HurksBestelSysteem
         private ProductCategory[] totalCategories;
         private List<ProductCategory> chosenCategories;
         private List<ProductCategory> availableCategories;
+        private CategoryComparator categoryComparator;
 
         public AddProduct()
         {
@@ -31,6 +32,7 @@ namespace HurksBestelSysteem
             totalCategories = null;
             chosenCategories = new List<ProductCategory>();
             availableCategories = new List<ProductCategory>();
+            categoryComparator = new CategoryComparator();
             GetAvailableCategories();
         }
 
@@ -114,7 +116,7 @@ namespace HurksBestelSysteem
             for (int i = 0; i < chosenCategories.Count; i++)
             {
                 ProductCategory c = chosenCategories[i];
-                if (totalCategories.Contains<ProductCategory>(c) == false) //DIT KAN FOUT GAAN MSS, MAAK COMPARATOR OID
+                if (totalCategories.Contains<ProductCategory>(c, categoryComparator) == false) //DIT KAN FOUT GAAN MSS, MAAK COMPARATOR OID
                 {
                     //if they do not, remove them
                     chosenCategories.Remove(c);
@@ -125,7 +127,7 @@ namespace HurksBestelSysteem
             for (int i = 0; i < totalCategories.Length; i++)
             {
                 ProductCategory c = totalCategories[i];
-                if (chosenCategories.Contains(c) == false) //DIT KAN FOUT GAAN MSS, MAAK COMPARATOR OID
+                if (chosenCategories.Contains(c, categoryComparator) == false) //DIT KAN FOUT GAAN MSS, MAAK COMPARATOR OID
                 {
                     availableCategories.Add(c);
                 }

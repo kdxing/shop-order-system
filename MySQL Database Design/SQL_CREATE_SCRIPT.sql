@@ -31,7 +31,8 @@ CREATE  TABLE IF NOT EXISTS `hurksbestelsysteem`.`category` (
   `idcategory` INT NOT NULL AUTO_INCREMENT ,
   `categoryname` VARCHAR(45) NOT NULL ,
   `categorydescription` TEXT NULL ,
-  PRIMARY KEY (`idcategory`) )
+  PRIMARY KEY (`idcategory`) ,
+  UNIQUE INDEX `categoryname_UNIQUE` (`categoryname` ASC) )
 ENGINE = InnoDB;
 
 
