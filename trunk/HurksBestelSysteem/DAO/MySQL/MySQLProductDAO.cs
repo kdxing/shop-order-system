@@ -11,89 +11,96 @@ namespace HurksBestelSysteem.DAO.MySQL
 {
     public class MySQLProductDAO : ProductDAO
     {
-        //TODO:
-        //Fix efficienter inserten (in 1x?) zoek op in boek
-        //Gebruik transacties ivm fout gaan van categorie insert
-        //GUI doet raar na toevoegen van product, categorien verspringen
         public bool AddProduct(Product p)
         {
-            try
+            using (IDbConnection connection = MySQLDAOFactory.GetDatabase().CreateOpenConnection())
             {
-                using (IDbConnection connection = MySQLDAOFactory.GetDatabase().CreateOpenConnection())
+                using (IDbTransaction transaction = connection.BeginTransaction())
                 {
-                    CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
-                    string priceString = p.price.ToString(culture);  //we store it as US-style decimal
-                    string productName = p.productName.Trim().ToLower();
-                    string query = "INSERT INTO product (productname, productcode, description, price, pricetype) VALUES "
-                    + "('" + productName + "'," + "'" + p.productCode.ToString() + "'," + "'" + p.description + "'," + "'" + priceString + "','" + p.priceType + "')";
-                    using (IDbCommand command = MySQLDAOFactory.GetDatabase().CreateCommand(query, connection))
+                    try
                     {
-                        if (command.ExecuteNonQuery() <= 0)
+                        CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
+                        string priceString = p.price.ToString(culture);  //we store it as US-style decimal
+                        string productName = p.productName.Trim().ToLower();
+                        string query = "INSERT INTO product (productname, productcode, description, price, pricetype) VALUES "
+                        + "('" + productName + "'," + "'" + p.productCode.ToString() + "'," + "'" + p.description + "'," + "'" + priceString + "','" + p.priceType + "')";
+                        using (IDbCommand command = MySQLDAOFactory.GetDatabase().CreateCommand(query, connection))
                         {
-                            return false;
-                        }
-                    }
-                    if (p.categories != null && p.categories.Length > 0)
-                    {
-                        //now get id
-                        int id = -1;
-                        string queryID = "SELECT product.idproduct FROM product WHERE product.productname = '" + productName + "' AND product.productcode = '" + p.productCode.ToString() + "'";
-                        using (IDbCommand commandID = MySQLDAOFactory.GetDatabase().CreateCommand(queryID, connection))
-                        {
-                            using (IDataReader reader = commandID.ExecuteReader())
+                            if (command.ExecuteNonQuery() <= 0)
                             {
-                                if (reader.Read())
-                                {
-                                    id = Convert.ToInt32(reader["idproduct"]);
-                                }
-                                else
-                                {
-                                    throw new Exception("product inserted succesfully, but could not retrieve ID afterwards");
-                                }
+                                transaction.Rollback();
+                                return false;
                             }
                         }
-                        if (id != -1)
+                        if (p.categories != null && p.categories.Length > 0)
                         {
-                            //we have the id, now add categories
-                            StringBuilder catQuery = new StringBuilder("INSERT INTO product_category (categoryid, productid) VALUES ", p.categories.Length * 2);
-                            for (int i = 0; i < p.categories.Length; i++)
+                            //now get id
+                            int id = -1;
+                            string queryID = "SELECT LAST_INSERT_ID();"; //"SELECT product.idproduct FROM product WHERE product.productname = '" + productName + "' AND product.productcode = '" + p.productCode.ToString() + "'";
+                            using (IDbCommand commandID = MySQLDAOFactory.GetDatabase().CreateCommand(queryID, connection))
                             {
-                                catQuery.Append("(" + p.categories[i].internalID + ", " + id + ")");
-                                if (i != (p.categories.Length - 1))
+                                using (IDataReader reader = commandID.ExecuteReader())
                                 {
-                                    catQuery.Append(", ");
+                                    if (reader.Read())
+                                    {
+                                        id = Convert.ToInt32(reader[0]);
+                                    }
+                                    else
+                                    {
+                                        transaction.Rollback();
+                                        throw new Exception("product inserted succesfully, but could not retrieve ID afterwards");
+                                    }
                                 }
                             }
-                            using (IDbCommand commandCat = MySQLDAOFactory.GetDatabase().CreateCommand(catQuery.ToString(), connection))
+                            if (id != -1)
                             {
-                                if (commandCat.ExecuteNonQuery() <= 0)
+                                //we have the id, now add categories
+                                StringBuilder catQuery = new StringBuilder("INSERT INTO product_category (categoryid, productid) VALUES ", p.categories.Length * 2);
+                                for (int i = 0; i < p.categories.Length; i++)
                                 {
-                                    return false;
+                                    catQuery.Append("(" + p.categories[i].internalID + ", " + id + ")");
+                                    if (i != (p.categories.Length - 1))
+                                    {
+                                        catQuery.Append(", ");
+                                    }
                                 }
-                                else
+                                using (IDbCommand commandCat = MySQLDAOFactory.GetDatabase().CreateCommand(catQuery.ToString(), connection))
                                 {
-                                    return true;
+                                    if (commandCat.ExecuteNonQuery() <= 0)
+                                    {
+                                        transaction.Rollback();
+                                        return false;
+                                    }
+                                    else
+                                    {
+                                        transaction.Commit();
+                                        return true;
+                                    }
                                 }
+                            }
+                            else
+                            {
+                                transaction.Rollback();
+                                throw new Exception("product inserted succesfully, but retrieved id was -1");
                             }
                         }
                         else
                         {
-                            throw new Exception("product inserted succesfully, but retrieved id was -1");
+                            transaction.Commit();
+                            return true;
                         }
                     }
-                    else
+                    catch (MySqlException ex)
                     {
-                        return true;
+                        transaction.Rollback();
+                        throw new DatabaseException(ex.Message, ex);
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw ex;
                     }
                 }
-            }
-            catch (MySqlException ex)
-            {
-                throw new DatabaseException(ex.Message, ex);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
             }
         }
 
