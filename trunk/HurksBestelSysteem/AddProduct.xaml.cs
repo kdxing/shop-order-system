@@ -153,8 +153,7 @@ namespace HurksBestelSysteem
             access.GetProductCategories(out categories);
             totalCategories = categories;
             //update our available and chosen lists and the GUI
-            UpdateCategoryLists();
-            
+            UpdateCategoryLists(); 
         }
 
         private void btnAddCategories_Click(object sender, RoutedEventArgs e)

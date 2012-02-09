@@ -7,6 +7,7 @@ namespace HurksBestelSysteem.DAO
         public enum FactoryType { MySQL }
 
         public abstract ProductDAO GetProductDAO();
+        public abstract CategoryDAO GetCategoryDAO();
 
         public static DAOFactory GetDAOFactory(FactoryType factoryType)
         {

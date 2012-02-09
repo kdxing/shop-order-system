@@ -8,11 +8,11 @@ namespace HurksBestelSysteem.DAO.MySQL
         private static DatabaseConnection database;
         private const string host = "localhost";
         private const string userName = "root";
-        private const string password = "password";
+        private const string password = "password ";
         private const int port = 22;
         private const string databaseName = "hurksbestelsysteem";
 
-        public MySQLDAOFactory()
+        public MySQLDAOFactory() 
         {
             GetDatabase();
         }
@@ -30,6 +30,11 @@ namespace HurksBestelSysteem.DAO.MySQL
         public override ProductDAO GetProductDAO()
         {
             return new MySQLProductDAO();
+        }
+
+        public override CategoryDAO GetCategoryDAO()
+        {
+            return new MySQLCategoryDAO();
         }
     }
 }

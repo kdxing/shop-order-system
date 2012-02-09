@@ -47,5 +47,12 @@ namespace HurksBestelSysteem
             d.Owner = this;
             d.Show();
         }
+
+        private void btnFindProductsByCategory_Click(object sender, RoutedEventArgs e)
+        {
+            FindProductByCategory c = new FindProductByCategory();
+            c.Owner = this;
+            c.Show();
+        }
     }
 }
