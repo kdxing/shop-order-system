@@ -13,6 +13,11 @@ namespace HurksBestelSysteem.DAO.MySQL
     {
         public bool AddProduct(Product p)
         {
+            if (p.internalID.Equals(-1) == false)
+            {
+                throw new Exception("Product to insert into database already has database id!");
+            }
+
             using (IDbConnection connection = MySQLDAOFactory.GetDatabase().CreateOpenConnection())
             {
                 using (IDbTransaction transaction = connection.BeginTransaction())
@@ -35,15 +40,14 @@ namespace HurksBestelSysteem.DAO.MySQL
                         if (p.categories != null && p.categories.Length > 0)
                         {
                             //now get id
-                            int id = -1;
-                            string queryID = "SELECT LAST_INSERT_ID();"; //"SELECT product.idproduct FROM product WHERE product.productname = '" + productName + "' AND product.productcode = '" + p.productCode.ToString() + "'";
+                            string queryID = "SELECT LAST_INSERT_ID();";
                             using (IDbCommand commandID = MySQLDAOFactory.GetDatabase().CreateCommand(queryID, connection))
                             {
                                 using (IDataReader reader = commandID.ExecuteReader())
                                 {
                                     if (reader.Read())
                                     {
-                                        id = Convert.ToInt32(reader[0]);
+                                        p.internalID = Convert.ToInt32(reader[0]);
                                     }
                                     else
                                     {
@@ -52,13 +56,13 @@ namespace HurksBestelSysteem.DAO.MySQL
                                     }
                                 }
                             }
-                            if (id != -1)
+                            if (p.internalID.Equals(-1) == false)
                             {
                                 //we have the id, now add categories
                                 StringBuilder catQuery = new StringBuilder("INSERT INTO product_category (categoryid, productid) VALUES ", p.categories.Length * 2);
                                 for (int i = 0; i < p.categories.Length; i++)
                                 {
-                                    catQuery.Append("(" + p.categories[i].internalID + ", " + id + ")");
+                                    catQuery.Append("(" + p.categories[i].internalID + ", " + p.internalID + ")");
                                     if (i != (p.categories.Length - 1))
                                     {
                                         catQuery.Append(", ");
@@ -244,29 +248,65 @@ namespace HurksBestelSysteem.DAO.MySQL
             }
         }
 
-        public bool GetAllProductCategories(out ProductCategory[] categories)
+        public bool GetProductsByCategory(ProductCategory[] categories, out Product[] products)
         {
             try
             {
                 using (IDbConnection connection = MySQLDAOFactory.GetDatabase().CreateOpenConnection())
                 {
-                    string query = "SELECT * FROM category";
-                    using (IDbCommand command = MySQLDAOFactory.GetDatabase().CreateCommand(query, connection))
+                    StringBuilder query = new StringBuilder(
+                        "SELECT * " +
+                        "FROM " +
+                        "(" +
+                            "SELECT p.* " +
+                            "FROM product AS p " +
+                            "JOIN product_category AS cat " +
+                            "ON (cat.productid = p.idproduct AND ("
+                    );
+                    for (int i = 0; i < categories.Length; i++)
+                    {
+                        if (i != 0)
+                        {
+                            query.Append("OR ");
+                        }
+                        query.Append("cat.categoryid = " + categories[i].internalID + " ");
+                    }
+                    query.Append(
+                        "))" +
+                        ")" +
+                        "AS product_with_categories " +
+                        "GROUP BY idproduct " +
+                        "HAVING COUNT(idproduct) >= " + categories.Length
+                        );
+                    using (IDbCommand command = MySQLDAOFactory.GetDatabase().CreateCommand(query.ToString(), connection))
                     {
                         using (IDataReader reader = command.ExecuteReader())
                         {
-                            List<ProductCategory> categoryList = new List<ProductCategory>();
+                            NumberFormatInfo numberInfo = System.Globalization.NumberFormatInfo.CurrentInfo;
+                            List<Product> productsList = new List<Product>();
                             while (reader.Read())
                             {
-                                ProductCategory c = new ProductCategory(
-                                    reader["categoryname"].ToString(),
-                                    reader["categorydescription"].ToString(),
-                                    Convert.ToInt32(reader["idcategory"])
-                                    );
-                                categoryList.Add(c);
+                                Product.PriceType priceType;
+                                if (Enum.TryParse<Product.PriceType>(reader["pricetype"].ToString(), true, out priceType))
+                                {
+                                    Product p = new Product(
+                                        reader["productname"].ToString(),
+                                        Convert.ToInt32(reader["productcode"]),
+                                        reader["description"].ToString(),
+                                        Decimal.Parse(reader["price"].ToString(), NumberStyles.Currency, numberInfo),
+                                        priceType,
+                                        categories,
+                                        (Convert.ToInt32(reader["idproduct"]))
+                                        );
+                                    productsList.Add(p);
+                                }
+                                else
+                                {
+                                    throw new Exception("Couldn't cast product price type enum!");
+                                }
                             }
-                            categories = categoryList.ToArray();
-                            if (categories.Length > 0)
+                            products = productsList.ToArray();
+                            if (products.Length > 0)
                             {
                                 return true;
                             }

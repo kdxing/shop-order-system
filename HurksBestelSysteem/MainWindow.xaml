@@ -3,8 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Overzicht" Height="348" Width="410">
     <Grid Width="374" Height="287">
-        <Button Content="Zoek Product" Height="23" HorizontalAlignment="Left" Margin="12,12,0,0" Name="btnFindProduct" VerticalAlignment="Top" Width="120" Click="btnFindProduct_Click" />
-        <Button Content="Voeg Product Toe" Height="23" HorizontalAlignment="Left" Margin="12,41,0,0" Name="btnAddProduct" VerticalAlignment="Top" Width="120" Click="btnAddProduct_Click" />
-        <Button Content="Verwijder Product" Height="23" HorizontalAlignment="Left" Margin="12,70,0,0" Name="btnDeleteProduct" VerticalAlignment="Top" Width="120" Click="btnDeleteProduct_Click" />
+        <Button Content="Zoek Product" Height="23" HorizontalAlignment="Left" Margin="12,12,0,0" Name="btnFindProduct" VerticalAlignment="Top" Width="162" Click="btnFindProduct_Click" />
+        <Button Content="Voeg Product Toe" Height="23" HorizontalAlignment="Left" Margin="12,0,0,223" Name="btnAddProduct" VerticalAlignment="Bottom" Width="162" Click="btnAddProduct_Click" />
+        <Button Content="Verwijder Product" Height="23" HorizontalAlignment="Left" Margin="12,0,0,194" Name="btnDeleteProduct" VerticalAlignment="Bottom" Width="162" Click="btnDeleteProduct_Click" />
+        <Button Content="Zoek Product op Categorie" Height="23" HorizontalAlignment="Left" Margin="12,99,0,0" Name="btnFindProductsByCategory" VerticalAlignment="Top" Width="162" Click="btnFindProductsByCategory_Click" />
     </Grid>
 </Window>

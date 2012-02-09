@@ -10,6 +10,6 @@ namespace HurksBestelSysteem.DAO
         bool GetProductByCode(int productCode, out Product product);
         bool GetProductsByName(string productName, out Product[] products);
         bool RemoveProduct(Product p);
-        bool GetAllProductCategories(out ProductCategory[] categories);
+        bool GetProductsByCategory(ProductCategory[] categories, out Product[] products);
     }
 }
