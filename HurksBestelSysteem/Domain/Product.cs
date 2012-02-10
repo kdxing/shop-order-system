@@ -1,6 +1,6 @@
 ﻿namespace HurksBestelSysteem.Domain
 {
-    public class Product
+    public sealed class Product
     {
         public string productName;
         public int productCode;

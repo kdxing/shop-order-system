@@ -95,9 +95,15 @@
     <Compile Include="AddCategory.xaml.cs">
       <DependentUpon>AddCategory.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DAO\MySQL\MySQLOrderDAO.cs" />
+    <Compile Include="DAO\OrderDAO.cs" />
     <Compile Include="DeleteCategory.xaml.cs">
       <DependentUpon>DeleteCategory.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Domain\Customer.cs" />
+    <Compile Include="Domain\Employee.cs" />
+    <Compile Include="Domain\Order.cs" />
+    <Compile Include="Domain\Order_Entry.cs" />
     <Compile Include="FindProductByCategory.xaml.cs">
       <DependentUpon>FindProductByCategory.xaml</DependentUpon>
     </Compile>
