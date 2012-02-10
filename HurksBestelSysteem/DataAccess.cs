@@ -150,6 +150,23 @@ namespace HurksBestelSysteem
             }
         }
 
+        public bool RemoveCategory(ProductCategory category)
+        {
+            CategoryDAO dao = daoFactory.GetCategoryDAO();
+            try
+            {
+                return dao.RemoveCategory(category);
+            }
+            catch (DatabaseException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         #endregion CATEGORY_FUNCTIONS
         //#################### END OF CATEGORY FUNCTIONS ###################
         //#################### END OF CATEGORY FUNCTIONS ###################

@@ -65,6 +65,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DeleteCategory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FindProductByCategory.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -90,6 +94,9 @@
     </Compile>
     <Compile Include="AddCategory.xaml.cs">
       <DependentUpon>AddCategory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteCategory.xaml.cs">
+      <DependentUpon>DeleteCategory.xaml</DependentUpon>
     </Compile>
     <Compile Include="FindProductByCategory.xaml.cs">
       <DependentUpon>FindProductByCategory.xaml</DependentUpon>

@@ -70,7 +70,7 @@ namespace HurksBestelSysteem
                 else
                 {
                     Product p = (Product)selected;
-                    MessageBoxResult confirmation = MessageBox.Show("Weet u zeker dat u product " + p.productName + " (" + p.productCode + ") wilt verwijderen?", "Verwijderbevestiging", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    MessageBoxResult confirmation = MessageBox.Show("Weet u zeker dat u product '" + p.productName + "' (" + p.productCode + ") wilt verwijderen?", "Verwijderbevestiging", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                     if (confirmation == MessageBoxResult.Yes)
                     {
                         if (access.RemoveProduct(p))
@@ -79,7 +79,7 @@ namespace HurksBestelSysteem
                         }
                         else
                         {
-                            MessageBox.Show("Product kon niet verwijderd worden!", "Geslaagd", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show("Product kon niet verwijderd worden!", "Mislukt", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                         //regardless of the outcome, update our productlist, so the user can visually see what happened to the products
                         GetSearchResult();

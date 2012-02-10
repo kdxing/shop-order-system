@@ -61,5 +61,12 @@ namespace HurksBestelSysteem
             a.Owner = this;
             a.Show();
         }
+
+        private void btnDeleteCategory_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteCategory d = new DeleteCategory();
+            d.Owner = this;
+            d.Show();
+        }
     }
 }

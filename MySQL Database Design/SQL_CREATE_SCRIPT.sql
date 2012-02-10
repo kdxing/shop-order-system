@@ -42,10 +42,10 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `hurksbestelsysteem`.`product_category` ;
 
 CREATE  TABLE IF NOT EXISTS `hurksbestelsysteem`.`product_category` (
-  `idproduct.category` INT NOT NULL AUTO_INCREMENT ,
+  `idproduct_category` INT NOT NULL AUTO_INCREMENT ,
   `categoryid` INT NOT NULL ,
   `productid` INT NOT NULL ,
-  PRIMARY KEY (`idproduct.category`) ,
+  PRIMARY KEY (`idproduct_category`) ,
   INDEX `category` (`categoryid` ASC) ,
   INDEX `product` (`productid` ASC) ,
   CONSTRAINT `category`
