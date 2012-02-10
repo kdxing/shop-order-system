@@ -60,7 +60,7 @@ namespace HurksBestelSysteem.DAO.MySQL
                     try
                     {
                         string query = "INSERT INTO category (categoryname, categorydescription) VALUES "
-                        + "('" + category.name + "', '" + category.description + "')";
+                        + "('" + category.name.Trim().ToLower() + "', '" + category.description + "')";
                         using (IDbCommand command = MySQLDAOFactory.GetDatabase().CreateCommand(query, connection))
                         {
                             if (command.ExecuteNonQuery() <= 0)
@@ -77,22 +77,17 @@ namespace HurksBestelSysteem.DAO.MySQL
                                 if (reader.Read())
                                 {
                                     category.internalID = Convert.ToInt32(reader[0]);
-                                    if (category.internalID.Equals(-1) == false)
-                                    {
-                                        transaction.Commit();
-                                        return true;
-                                    }
-                                    else
-                                    {
-                                        transaction.Rollback();
-                                        throw new Exception("category inserted succesfully, but retrieved ID was -1! Rolled back.");
-                                    }
                                 }
-                                else
-                                {
-                                    transaction.Rollback();
-                                    throw new Exception("category inserted succesfully, but could not retrieve ID afterwards. Rolled back.");
-                                }
+                            }
+                            if (category.internalID.Equals(-1) == false)
+                            {
+                                transaction.Commit();
+                                return true;
+                            }
+                            else
+                            {
+                                transaction.Rollback();
+                                throw new Exception("category inserted succesfully, but could not retrieve ID afterwards. Rolled back.");
                             }
                         }
                     }

@@ -49,11 +49,6 @@ namespace HurksBestelSysteem.DAO.MySQL
                                     {
                                         p.internalID = Convert.ToInt32(reader[0]);
                                     }
-                                    else
-                                    {
-                                        transaction.Rollback();
-                                        throw new Exception("product inserted succesfully, but could not retrieve ID afterwards");
-                                    }
                                 }
                             }
                             if (p.internalID.Equals(-1) == false)
@@ -85,7 +80,7 @@ namespace HurksBestelSysteem.DAO.MySQL
                             else
                             {
                                 transaction.Rollback();
-                                throw new Exception("product inserted succesfully, but retrieved id was -1");
+                                throw new Exception("product inserted succesfully, but could not retrieve ID afterwards. Rollback.");
                             }
                         }
                         else
