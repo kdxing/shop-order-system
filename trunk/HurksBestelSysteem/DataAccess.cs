@@ -170,5 +170,115 @@ namespace HurksBestelSysteem
         #endregion CATEGORY_FUNCTIONS
         //#################### END OF CATEGORY FUNCTIONS ###################
         //#################### END OF CATEGORY FUNCTIONS ###################
+
+        //###################### ORDER FUNCTIONS ###########################
+        //###################### ORDER FUNCTIONS ###########################
+        #region ORDER_FUNCTIONS
+
+        public bool AddOrder(Order order)
+        {
+            OrderDAO dao = daoFactory.GetOrderDAO();
+            try
+            {
+                return dao.AddOrder(order);
+            }
+            catch (DatabaseException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool RemoveOrder(Order order)
+        {
+            OrderDAO dao = daoFactory.GetOrderDAO();
+            try
+            {
+                return dao.RemoveOrder(order);
+            }
+            catch (DatabaseException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool GetOrdersByCustomer(Customer customer, out Order[] orders)
+        {
+            OrderDAO dao = daoFactory.GetOrderDAO();
+            try
+            {
+                return dao.GetOrdersByCustomer(customer, out orders);
+            }
+            catch (DatabaseException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool GetOrdersByPickupDate(DateTime date, out Order[] orders)
+        {
+            OrderDAO dao = daoFactory.GetOrderDAO();
+            try
+            {
+                return dao.GetOrdersByPickupDate(date, out orders);
+            }
+            catch (DatabaseException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool GetOrdersByOrderedDate(DateTime date, out Order[] orders)
+        {
+            OrderDAO dao = daoFactory.GetOrderDAO();
+            try
+            {
+                return dao.GetOrdersByOrderedDate(date, out orders);
+            }
+            catch (DatabaseException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool GetOrdersByEmployee(Employee employee, out Order[] orders)
+        {
+            OrderDAO dao = daoFactory.GetOrderDAO();
+            try
+            {
+                return dao.GetOrdersByEmployee(employee, out orders);
+            }
+            catch (DatabaseException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        #endregion ORDERY_FUNCTIONS
+        //###################### END OF ORDER FUNCTIONS ####################
+        //###################### END OF ORDER FUNCTIONS ####################
     }
 }
