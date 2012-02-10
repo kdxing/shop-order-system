@@ -106,8 +106,14 @@ namespace HurksBestelSysteem
                 priceType,
                 chosenCategories.ToArray()
                 );
-            access.AddProduct(p);
-            MessageBox.Show(this, "Product succesvol toegevoegd!", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
+            if (access.AddProduct(p))
+            {
+                MessageBox.Show(this, "Product succesvol toegevoegd!", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                MessageBox.Show(this, "Product kon niet toegevoegd worden!", "Fout", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void UpdateCategoryLists()

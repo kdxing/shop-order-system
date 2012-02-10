@@ -54,5 +54,12 @@ namespace HurksBestelSysteem
             c.Owner = this;
             c.Show();
         }
+
+        private void btnAddCategory_Click(object sender, RoutedEventArgs e)
+        {
+            AddCategory a = new AddCategory();
+            a.Owner = this;
+            a.Show();
+        }
     }
 }

@@ -91,23 +91,6 @@ namespace HurksBestelSysteem
             }
         }
 
-        public bool GetProductCategories(out ProductCategory[] categories)
-        {
-            CategoryDAO dao = daoFactory.GetCategoryDAO();
-            try
-            {
-                return dao.GetAllCategories(out categories);
-            }
-            catch (DatabaseException ex)
-            {
-                throw ex;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
         public bool GetProductsByCategory(ProductCategory[] categories, out Product[] products)
         {
             ProductDAO dao = daoFactory.GetProductDAO();
@@ -128,5 +111,47 @@ namespace HurksBestelSysteem
         #endregion PRODUCT_FUNCTIONS
         //#################### END OF PRODUCT FUNCTIONS ####################
         //#################### END OF PRODUCT FUNCTIONS ####################
+
+        //#################### CATEGORY FUNCTIONS ##########################
+        //#################### CATEGORY FUNCTIONS ##########################
+        #region CATEGORY_FUNCTIONS
+
+        public bool GetProductCategories(out ProductCategory[] categories)
+        {
+            CategoryDAO dao = daoFactory.GetCategoryDAO();
+            try
+            {
+                return dao.GetAllCategories(out categories);
+            }
+            catch (DatabaseException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool AddCategory(ProductCategory category)
+        {
+            CategoryDAO dao = daoFactory.GetCategoryDAO();
+            try
+            {
+                return dao.AddCategory(category);
+            }
+            catch (DatabaseException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        #endregion CATEGORY_FUNCTIONS
+        //#################### END OF CATEGORY FUNCTIONS ###################
+        //#################### END OF CATEGORY FUNCTIONS ###################
     }
 }

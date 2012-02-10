@@ -7,5 +7,6 @@
         <Button Content="Voeg Product Toe" Height="23" HorizontalAlignment="Left" Margin="12,0,0,223" Name="btnAddProduct" VerticalAlignment="Bottom" Width="162" Click="btnAddProduct_Click" />
         <Button Content="Verwijder Product" Height="23" HorizontalAlignment="Left" Margin="12,0,0,194" Name="btnDeleteProduct" VerticalAlignment="Bottom" Width="162" Click="btnDeleteProduct_Click" />
         <Button Content="Zoek Product op Categorie" Height="23" HorizontalAlignment="Left" Margin="12,99,0,0" Name="btnFindProductsByCategory" VerticalAlignment="Top" Width="162" Click="btnFindProductsByCategory_Click" />
+        <Button Content="Voeg Categorie Toe" Height="23" HorizontalAlignment="Left" Margin="12,128,0,0" Name="btnAddCategory" VerticalAlignment="Top" Width="162" Click="btnAddCategory_Click" />
     </Grid>
 </Window>

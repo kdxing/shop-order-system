@@ -8,7 +8,7 @@ namespace HurksBestelSysteem.DAO.MySQL
         private static DatabaseConnection database;
         private const string host = "localhost";
         private const string userName = "root";
-        private const string password = "password ";
+        private const string password = "password";
         private const int port = 22;
         private const string databaseName = "hurksbestelsysteem";
 
