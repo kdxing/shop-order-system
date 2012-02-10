@@ -107,7 +107,38 @@ namespace HurksBestelSysteem.DAO.MySQL
 
         public bool RemoveCategory(ProductCategory category)
         {
-            return false;
+            if (category.internalID.Equals(-1))
+            {
+                return false;
+            }
+
+            try
+            {
+                using (IDbConnection connection = MySQLDAOFactory.GetDatabase().CreateOpenConnection())
+                {
+                    //upon deletion, make sure both the productcode and the internal database id match, that way we're 100% sure the right product is deleted
+                    string query = "DELETE FROM category WHERE category.idcategory = '" + category.internalID.ToString() + "'";
+                    using (IDbCommand command = MySQLDAOFactory.GetDatabase().CreateCommand(query, connection))
+                    {
+                        if (command.ExecuteNonQuery() <= 0)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new DatabaseException(ex.Message, ex);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
     }

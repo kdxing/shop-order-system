@@ -34,6 +34,7 @@ namespace HurksBestelSysteem
             if (name.Equals(""))
             {
                 MessageBox.Show("U moet een naam voor de categorie invullen!", "Fout", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
             ProductCategory c = new ProductCategory(name, description);
             if (access.AddCategory(c))

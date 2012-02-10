@@ -1,0 +1,10 @@
+﻿<Window x:Class="HurksBestelSysteem.DeleteCategory"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="DeleteCategory" Height="284" Width="268">
+    <Grid Height="235" Width="238">
+        <Label Content="Categoriën" Height="28" HorizontalAlignment="Left" Margin="12,12,0,0" Name="lblAvailableCategories" VerticalAlignment="Top" />
+        <ListBox Height="156" HorizontalAlignment="Left" Margin="12,37,0,0" Name="lbAvailableCategories" VerticalAlignment="Top" Width="212" />
+        <Button Content="Verwijder Categorie" Height="23" HorizontalAlignment="Left" Margin="105,0,0,13" Name="btnDeleteCategory" VerticalAlignment="Bottom" Width="119" Click="btnDeleteCategory_Click" />
+    </Grid>
+</Window>
