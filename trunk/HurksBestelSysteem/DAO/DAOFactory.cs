@@ -9,6 +9,7 @@ namespace HurksBestelSysteem.DAO
         public abstract ProductDAO GetProductDAO();
         public abstract CategoryDAO GetCategoryDAO();
         public abstract OrderDAO GetOrderDAO();
+        public abstract CustomerDAO GetCustomerDAO();
 
         public static DAOFactory GetDAOFactory(FactoryType factoryType)
         {

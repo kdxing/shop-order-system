@@ -54,25 +54,25 @@ namespace HurksBestelSysteem
             object selectedObject = lbAvailableCategories.SelectedItem;
             if (selectedObject == null)
             {
-                MessageBox.Show("Selecteer een categorie om te verwijderen.", "Selectie", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show(this, "Selecteer een categorie om te verwijderen.", "Selectie", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
             ProductCategory cat = (ProductCategory)selectedObject;
-            MessageBoxResult result = MessageBox.Show("Weet U zeker dat u categorie '" + cat.name + "' wilt verwijderen?", "Bevestiging", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            MessageBoxResult result = MessageBox.Show(this, "Weet U zeker dat u categorie '" + cat.name + "' wilt verwijderen?", "Bevestiging", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
                 if (access.RemoveCategory(cat))
                 {
-                    MessageBox.Show("Categorie verwijderd!", "Verwijderd", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show(this, "Categorie verwijderd!", "Verwijderd", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Categorie kon niet verwijderd worden!", "Mislukt", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(this, "Categorie kon niet verwijderd worden!", "Mislukt", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
             {
-                MessageBox.Show("Verwijderding afgebroken", "Afgebroken", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show(this, "Verwijderding afgebroken", "Afgebroken", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             GetAvailableCategories();
         }

@@ -68,5 +68,12 @@ namespace HurksBestelSysteem
             d.Owner = this;
             d.Show();
         }
+
+        private void btnAddCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            AddCustomer a = new AddCustomer();
+            a.Owner = this;
+            a.Show();
+        }
     }
 }

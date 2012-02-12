@@ -24,5 +24,10 @@
                 <Button Content="Verwijder Bestelling" Height="23" HorizontalAlignment="Left" Margin="6,111,0,0" Name="btnDeleteOrder" VerticalAlignment="Top" Width="162" />
             </Grid>
         </GroupBox>
+        <GroupBox Header="Klant" Height="163" HorizontalAlignment="Left" Margin="212,176,0,0" Name="gpbCustomer" VerticalAlignment="Top" Width="192">
+            <Grid>
+                <Button Content="Voeg Klant Toe" Height="23" HorizontalAlignment="Left" Margin="6,6,0,0" Name="btnAddCustomer" VerticalAlignment="Top" Width="168" Click="btnAddCustomer_Click" />
+            </Grid>
+        </GroupBox>
     </Grid>
 </Window>

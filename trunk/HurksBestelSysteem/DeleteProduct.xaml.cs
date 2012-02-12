@@ -58,35 +58,35 @@ namespace HurksBestelSysteem
         {
             if (lbSearchResult.SelectedItems.Count > 1)
             {
-                MessageBox.Show("U kunt niet meerdere producten tegelijk verwijderen!", "Fout", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(this, "U kunt niet meerdere producten tegelijk verwijderen!", "Fout", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
                 object selected = lbSearchResult.SelectedItem;
                 if (selected == null)
                 {
-                    MessageBox.Show("Geen product geselecteerd!", "Fout", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(this, "Geen product geselecteerd!", "Fout", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {
                     Product p = (Product)selected;
-                    MessageBoxResult confirmation = MessageBox.Show("Weet u zeker dat u product '" + p.productName + "' (" + p.productCode + ") wilt verwijderen?", "Verwijderbevestiging", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    MessageBoxResult confirmation = MessageBox.Show(this, "Weet u zeker dat u product '" + p.productName + "' (" + p.productCode + ") wilt verwijderen?", "Verwijderbevestiging", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                     if (confirmation == MessageBoxResult.Yes)
                     {
                         if (access.RemoveProduct(p))
                         {
-                            MessageBox.Show("Product verwijderd!", "Geslaagd", MessageBoxButton.OK, MessageBoxImage.Information);
+                            MessageBox.Show(this, "Product verwijderd!", "Geslaagd", MessageBoxButton.OK, MessageBoxImage.Information);
                         }
                         else
                         {
-                            MessageBox.Show("Product kon niet verwijderd worden!", "Mislukt", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(this, "Product kon niet verwijderd worden!", "Mislukt", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                         //regardless of the outcome, update our productlist, so the user can visually see what happened to the products
                         GetSearchResult();
                     }
                     else
                     {
-                        MessageBox.Show("Verwijdering afgebroken!", "Afgebroken", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                        MessageBox.Show(this, "Verwijdering afgebroken!", "Afgebroken", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     }
                 }
             }
