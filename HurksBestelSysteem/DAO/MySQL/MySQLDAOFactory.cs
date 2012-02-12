@@ -41,5 +41,10 @@ namespace HurksBestelSysteem.DAO.MySQL
         {
             return new MySQLOrderDAO();
         }
+
+        public override CustomerDAO GetCustomerDAO()
+        {
+            return new MySQLCustomerDAO();
+        }
     }
 }

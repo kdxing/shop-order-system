@@ -1,0 +1,20 @@
+﻿<Window x:Class="HurksBestelSysteem.AddCustomer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Voeg Klant Toe" Height="398" Width="318">
+    <Grid Height="359">
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="12,35,0,0" Name="tbFirstName" VerticalAlignment="Top" Width="176" />
+        <Label Content="Voornaam:" Height="28" HorizontalAlignment="Left" Margin="12,12,0,0" Name="lblFirstName" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="12,87,0,0" Name="tbLastName" VerticalAlignment="Top" Width="176" />
+        <Label Content="Achternaam (verplicht):" Height="28" HorizontalAlignment="Left" Margin="12,64,0,0" Name="lblLastName" VerticalAlignment="Top" />
+        <TextBox Height="23" Margin="12,139,0,0" Name="tbPhoneNumber" VerticalAlignment="Top" HorizontalAlignment="Left" Width="176" />
+        <Label Content="Telefoonnummer:" Height="28" HorizontalAlignment="Left" Margin="12,116,0,0" Name="lblPhoneNumber" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="12,191,0,0" Name="tbStreet" VerticalAlignment="Top" Width="176" />
+        <Label Content="Straat:" Height="28" HorizontalAlignment="Left" Margin="12,168,0,0" Name="lblStreet" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="12,243,0,0" Name="tbHouseNumber" VerticalAlignment="Top" Width="96" />
+        <Label Content="Huisnummer:" Height="28" HorizontalAlignment="Left" Margin="12,220,0,0" Name="lblHouseNumber" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="12,295,0,0" Name="tbTown" VerticalAlignment="Top" Width="176" />
+        <Label Content="Woonplaats:" Height="28" HorizontalAlignment="Left" Margin="12,272,0,0" Name="lblTown" VerticalAlignment="Top" />
+        <Button Content="Voeg Toe" Height="23" HorizontalAlignment="Left" Margin="209,325,0,0" Name="btnAddCustomer" VerticalAlignment="Top" Width="75" Click="btnAddCustomer_Click" />
+    </Grid>
+</Window>

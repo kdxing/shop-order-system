@@ -6,7 +6,7 @@
         public string lastName;
         public string phoneNumber;
         public string street;
-        public string streetNumber;
+        public string houseNumber;
         public string town;
         public int internalID;
 
@@ -17,7 +17,7 @@
             this.lastName = lastName;
             this.phoneNumber = phoneNumber;
             this.street = street;
-            this.streetNumber = streetNumber;
+            this.houseNumber = streetNumber;
             this.town = town;
             this.internalID = -1;
         }
@@ -29,14 +29,14 @@
             this.lastName = lastName;
             this.phoneNumber = phoneNumber;
             this.street = street;
-            this.streetNumber = streetNumber;
+            this.houseNumber = streetNumber;
             this.town = town;
             this.internalID = internalID;
         }
 
         public override string ToString()
         {
-            return lastName + " (" + firstName + ") " + street + " " + streetNumber + ", " + town;
+            return lastName + " (" + firstName + ") " + street + " " + houseNumber + ", " + town;
         }
     }
 }

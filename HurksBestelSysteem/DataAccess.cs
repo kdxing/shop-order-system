@@ -277,8 +277,34 @@ namespace HurksBestelSysteem
             }
         }
 
-        #endregion ORDERY_FUNCTIONS
+        #endregion ORDER_FUNCTIONS
         //###################### END OF ORDER FUNCTIONS ####################
         //###################### END OF ORDER FUNCTIONS ####################
+
+        //##################### CUSTOMER FUNCTIONS #########################
+        //##################### CUSTOMER FUNCTIONS #########################
+        #region CUSTOMER_FUNCTIONS
+
+        public bool AddCustomer(Customer customer)
+        {
+            CustomerDAO dao = daoFactory.GetCustomerDAO();
+            try
+            {
+                return dao.AddCustomer(customer);
+            }
+            catch (DatabaseException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        #endregion CUSTOMER_FUNCTIONS
+        //##################### END OF CUSTOMER FUNCTIONS ##################
+        //##################### END OF CUSTOMER FUNCTIONS ##################
+
     }
 }
