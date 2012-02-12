@@ -84,7 +84,7 @@ CREATE  TABLE IF NOT EXISTS `hurksbestelsysteem`.`customer` (
   `lastname` VARCHAR(45) NOT NULL ,
   `phonenumber` VARCHAR(45) NULL ,
   `street` VARCHAR(45) NULL ,
-  `streetnumber` VARCHAR(45) NULL ,
+  `housenumber` VARCHAR(45) NULL ,
   `town` VARCHAR(45) NULL ,
   PRIMARY KEY (`idcustomer`) )
 ENGINE = InnoDB;
