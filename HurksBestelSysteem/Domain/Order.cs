@@ -55,7 +55,7 @@ namespace HurksBestelSysteem.Domain
 
         public override string ToString()
         {
-            return customer.lastName + " (" + customer.firstName + ")" + dateTimePickup.ToString();
+            return customer.lastName + " (" + customer.firstName + ") " + dateTimePickup.ToString();
         }
     }
 }

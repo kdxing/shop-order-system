@@ -75,5 +75,19 @@ namespace HurksBestelSysteem
             a.Owner = this;
             a.Show();
         }
+
+        private void btnAddBestelling_Click(object sender, RoutedEventArgs e)
+        {
+            AddOrder o = new AddOrder();
+            o.Owner = this;
+            o.Show();
+        }
+
+        private void btnSearchOrder_Click(object sender, RoutedEventArgs e)
+        {
+            FindOrder f = new FindOrder();
+            f.Owner = this;
+            f.Show();
+        }
     }
 }

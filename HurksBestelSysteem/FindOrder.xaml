@@ -1,0 +1,11 @@
+﻿<Window x:Class="HurksBestelSysteem.FindOrder"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Vind Order" Height="456" Width="416" Activated="Window_Activated">
+    <Grid>
+        <Label Content="Zoekterm:" Height="28" HorizontalAlignment="Left" Margin="12,12,0,0" Name="lblSearchInput" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="12,35,0,0" Name="tbSearchInput" VerticalAlignment="Top" Width="180" TextChanged="tbSearchInput_TextChanged" />
+        <Label Content="Gevonden orders:" Height="28" HorizontalAlignment="Left" Margin="12,64,0,0" Name="lblOrders" VerticalAlignment="Top" />
+        <ListBox Height="316" HorizontalAlignment="Left" Margin="12,89,0,0" Name="lbOrdersList" VerticalAlignment="Top" Width="370" />
+    </Grid>
+</Window>

@@ -69,6 +69,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="FindOrder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DeleteCategory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -107,6 +111,9 @@
       <DependentUpon>AddCategory.xaml</DependentUpon>
     </Compile>
     <Compile Include="DAO\CustomerDAO.cs" />
+    <Compile Include="FindOrder.xaml.cs">
+      <DependentUpon>FindOrder.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DAO\MySQL\MySQLCustomerDAO.cs" />
     <Compile Include="DAO\MySQL\MySQLOrderDAO.cs" />
     <Compile Include="DAO\OrderDAO.cs" />
