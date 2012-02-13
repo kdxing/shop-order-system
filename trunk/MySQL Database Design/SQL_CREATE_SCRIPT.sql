@@ -101,7 +101,7 @@ CREATE  TABLE IF NOT EXISTS `hurksbestelsysteem`.`order` (
   `ordered_datetime` DATETIME NOT NULL ,
   `pickup_datetime` DATETIME NOT NULL ,
   `employee_id` INT NOT NULL ,
-  `description` VARCHAR(45) NULL ,
+  `description` MEDIUMTEXT NULL ,
   PRIMARY KEY (`idorder`) ,
   INDEX `employee_id` (`employee_id` ASC) ,
   INDEX `customerid` (`customerid` ASC) ,

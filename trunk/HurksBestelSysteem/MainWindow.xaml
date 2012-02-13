@@ -19,8 +19,8 @@
         </GroupBox>
         <GroupBox Header="Bestelling" HorizontalAlignment="Left" Margin="12,176,0,24" Name="gpbOrder" Width="191">
             <Grid>
-                <Button Content="Nieuwe Bestelling" Height="23" HorizontalAlignment="Left" Margin="6,6,0,0" Name="btnAddBestelling" VerticalAlignment="Top" Width="162" />
-                <Button Content="Zoek Bestelling" Height="23" HorizontalAlignment="Left" Margin="6,35,0,0" Name="btnSearchOrder" VerticalAlignment="Top" Width="162" />
+                <Button Content="Nieuwe Bestelling" Height="23" HorizontalAlignment="Left" Margin="6,6,0,0" Name="btnAddBestelling" VerticalAlignment="Top" Width="162" Click="btnAddBestelling_Click" />
+                <Button Content="Zoek Bestelling" Height="23" HorizontalAlignment="Left" Margin="6,35,0,0" Name="btnSearchOrder" VerticalAlignment="Top" Width="162" Click="btnSearchOrder_Click" />
                 <Button Content="Verwijder Bestelling" Height="23" HorizontalAlignment="Left" Margin="6,111,0,0" Name="btnDeleteOrder" VerticalAlignment="Top" Width="162" />
             </Grid>
         </GroupBox>

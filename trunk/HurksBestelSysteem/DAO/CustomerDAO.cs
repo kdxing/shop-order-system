@@ -13,5 +13,6 @@ namespace HurksBestelSysteem.DAO
         bool UpdateCustomer(Customer customer);
         bool GetAllCustomers(out Customer[] customers);
         bool GetCustomersByName(string customerName, out Customer[] customers);
+        bool GetCustomerByID(int customerID, out Customer customer);
     }
 }

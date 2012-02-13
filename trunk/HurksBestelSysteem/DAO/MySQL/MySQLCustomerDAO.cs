@@ -94,7 +94,8 @@ namespace HurksBestelSysteem.DAO.MySQL
                                     reader["phonenumber"].ToString(),
                                     reader["street"].ToString(),
                                     reader["housenumber"].ToString(),
-                                    reader["town"].ToString()
+                                    reader["town"].ToString(),
+                                    Convert.ToInt32(reader["idcustomer"])
                                     );
                                 customerList.Add(c);
                             }
@@ -103,6 +104,51 @@ namespace HurksBestelSysteem.DAO.MySQL
                             {
                                 return true;
                             }
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new DatabaseException(ex.Message, ex);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool GetCustomerByID(int customerID, out Customer customer)
+        {
+            if (customerID.Equals(-1))
+            {
+                customer = null;
+                return false;
+            }
+            try
+            {
+                using (IDbConnection connection = MySQLDAOFactory.GetDatabase().CreateOpenConnection())
+                {
+                    string query = "SELECT * FROM customer where customer.idcustomer = '" + customerID.ToString() + "'";
+                    using (IDbCommand command = MySQLDAOFactory.GetDatabase().CreateCommand(query, connection))
+                    {
+                        using (IDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                customer = new Customer(
+                                    reader["firstname"].ToString(),
+                                    reader["lastname"].ToString(),
+                                    reader["phonenumber"].ToString(),
+                                    reader["street"].ToString(),
+                                    reader["housenumber"].ToString(),
+                                    reader["town"].ToString(),
+                                    customerID
+                                    );
+                                return true;
+                            }
+                            customer = null;
                             return false;
                         }
                     }

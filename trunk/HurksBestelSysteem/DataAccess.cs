@@ -209,6 +209,50 @@ namespace HurksBestelSysteem
             }
         }
 
+        public bool GetAllOrders(out Order[] orders)
+        {
+            OrderDAO dao = daoFactory.GetOrderDAO();
+            try
+            {
+                Order[] allOrders;
+                if (dao.GetAllOrders(out allOrders))
+                {
+                    CustomerDAO daoCustomer = daoFactory.GetCustomerDAO();
+                    Customer skeletonCustomer;
+                    Customer completeCustomer;
+                    Order order;
+                    for (int i = 0; i < allOrders.Length; i++)
+                    {
+                        order = allOrders[i];
+                        skeletonCustomer = order.customer;
+                        if (daoCustomer.GetCustomerByID(skeletonCustomer.internalID, out completeCustomer) == false)
+                        {
+                            throw new Exception("Could not retrieve customer with id " + skeletonCustomer.internalID + " for order " + order.internalID + " from " + skeletonCustomer.lastName);
+                        }
+                        else
+                        {
+                            order.customer = completeCustomer;
+                        }
+                    }
+                    orders = allOrders;
+                    return true;
+                }
+                else
+                {
+                    orders = new Order[0];
+                    return false;
+                }
+            }
+            catch (DatabaseException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public bool GetOrdersByCustomer(Customer customer, out Order[] orders)
         {
             OrderDAO dao = daoFactory.GetOrderDAO();
@@ -291,6 +335,40 @@ namespace HurksBestelSysteem
             try
             {
                 return dao.AddCustomer(customer);
+            }
+            catch (DatabaseException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool GetCustomersByName(string customerName, out Customer[] customers)
+        {
+            CustomerDAO dao = daoFactory.GetCustomerDAO();
+            try
+            {
+                return dao.GetCustomersByName(customerName, out customers);
+            }
+            catch (DatabaseException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool GetAllCustomers(out Customer[] customers)
+        {
+            CustomerDAO dao = daoFactory.GetCustomerDAO();
+            try
+            {
+                return dao.GetAllCustomers(out customers);
             }
             catch (DatabaseException ex)
             {

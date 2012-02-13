@@ -7,6 +7,7 @@ namespace HurksBestelSysteem.DAO
     {
         bool AddOrder(Order order);
         bool RemoveOrder(Order order);
+        bool GetAllOrders(out Order[] orders);
         bool GetOrdersByCustomer(Customer customer, out Order[] orders);
         bool GetOrdersByPickupDate(DateTime date, out Order[] orders);
         bool GetOrdersByOrderedDate(DateTime date, out Order[] orders);
